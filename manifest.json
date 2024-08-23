@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "Calendar Event Creator",
+    "version": "1.0",
+    "description": "Create Google Calendar events from selected text or manual input.",
+    "permissions": [
+        "contextMenus",
+        "scripting",
+        "activeTab",
+        "storage"
+    ],
+    "action": {
+        "default_title": "!!Create Calendar Event",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}
