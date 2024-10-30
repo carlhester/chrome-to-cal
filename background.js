@@ -1,5 +1,5 @@
 // Replace 'YOUR_OPENAI_API_KEY' with your actual API key
-const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY';
+const OPENAI_API_KEY = 'REPLACEME';
 
 // Function to generate Google Calendar link using OpenAI API
 async function generateCalendarLink(eventDescription) {
@@ -13,7 +13,7 @@ async function generateCalendarLink(eventDescription) {
                 'Authorization': `Bearer ${OPENAI_API_KEY}`
             },
             body: JSON.stringify({
-                model: "gpt-3.5-turbo",
+                model: "gpt-4o-mini",
                 messages: [
                     {
                         role: "system",
@@ -22,11 +22,7 @@ async function generateCalendarLink(eventDescription) {
                     {
                         role: "user",
                         content: `Generate a Google Calendar event link for the following event description:\n\n"${eventDescription}"\n\n
-                        The link should be in the correct format and valid so that it can open in a new tab and include 
-                        appropriate start and end times if specified. If times are not specified, default to a 1-hour 
-                        event starting at 9 AM on the specified date. You should only return the link itself and not 
-                        any other accompanying text so that the user can copy and paste it directly without editing. 
-                        Return the url only, and not any markup or HTML.`
+                        Attempt to determine the event description and event times based on the input. Assume the given times are in the PST/PDT timezone and that the events will happen in the future.  If no year is specified, used the current year (2024). The link should be in the correct format and valid so that it can open in a new tab and include appropriate start and end times if specified. If times do not have a timezone, you can assume they are in PST, which is the same timezone as the calendar.  If times are not specified, default to a 1-hour event starting at 9 AM on the specified date. You should only return the link itself and not any other accompanying text so that the user can copy and paste it directly without editing. Return the url only, and not any markup or HTML.`
                     }
                 ],
                 max_tokens: 200,
